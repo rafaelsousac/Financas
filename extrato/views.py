@@ -1,9 +1,13 @@
+import os
 from django.shortcuts import render, redirect
 from perfil.models import Categoria, Conta
 from .models import Valores
+from django.http import FileResponse
 from django.contrib import messages
 from django.contrib.messages import constants
 from datetime import datetime
+from django.template.loader import render_to_string
+from django.conf import settings
 
 
 def novo_valor(request):
@@ -55,3 +59,7 @@ def view_extrato(request):
         valores = valores.filter(categoria__id=categoria_get)
     return render(request, 'view_extrato.html', {'categorias': categorias, 'contas': contas,
                                                                     'valores': valores})
+
+
+
+
